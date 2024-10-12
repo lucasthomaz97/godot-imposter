@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+@export var menu_width_percentage: float = 30
+
 @onready var file_dialog = $FileDialog
 @onready var warin_dialog = $AcceptDialog
 @onready var save_path_edit = $HSplitContainer/Selects/GridContainer/SaveDir/LineEdit
@@ -26,9 +28,11 @@ var dilatate_distance:int=32
 
 var temp_bar:int
 
+func _process(_delta: float) -> void:
+	$HSplitContainer/Selects.custom_minimum_size.x = (EditorInterface.get_editor_viewport_2d().size.x/100) * menu_width_percentage
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 #region godot 4.2+ ,variables can be deleted
 	plugin = EditorPlugin.new()
 	interface = plugin.get_editor_interface()

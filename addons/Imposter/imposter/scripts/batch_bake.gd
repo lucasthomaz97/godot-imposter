@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+@export var menu_width_percentage: float = 30
+
 @onready var bake_dialog = $BakeFileDialog
 @onready var bake_dir_line = $HSplitContainer/Selects/GridContainer/SelectDir/LineEdit
 @onready var save_dialog = $SaveFileDialog
@@ -21,6 +23,9 @@ var resolution:int=1024
 var frame_size:int=16
 var dilatate_distance:int=32
 var temp_bar:int
+
+func _process(_delta: float) -> void:
+	$HSplitContainer/Selects.custom_minimum_size.x = (EditorInterface.get_editor_viewport_2d().size.x/100) * menu_width_percentage
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
